@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-hogwarts-background-light text-hogwarts-text-primary dark:bg-hogwarts-background-dark dark:text-hogwarts-text-light;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cinzel Decorative', serif;
+  }
+}
+
+@layer components {
+  .spell-btn {
+    @apply relative overflow-hidden bg-gradient-to-r from-hogwarts-gold/90 to-hogwarts-gold
+           text-hogwarts-background-dark px-8 py-3 rounded-lg font-serif font-bold
+           transition-all duration-500 ease-out
+           hover:shadow-[0_0_20px_rgba(212,175,55,0.5)]
+           hover:scale-105;
+  }
+
+  .spell-btn::before {
+    content: '';
+    @apply absolute inset-0 bg-white/20
+           transform -translate-x-full
+           transition-transform duration-500;
+  }
+
+  .spell-btn:hover::before {
+    @apply translate-x-0;
+  }
+
+  .parchment-card {
+    @apply bg-white/95 dark:bg-hogwarts-background-dark/95 backdrop-blur-sm rounded-lg 
+           border border-hogwarts-gold/20
+           shadow-[0_4px_20px_rgba(0,0,0,0.1)]
+           transition-all duration-500
+           hover:shadow-[0_0_30px_rgba(212,175,55,0.3)]
+           hover:scale-[1.02];
+  }
+
+  .wizard-input {
+    @apply pl-10 pr-4 py-2 rounded-lg
+           bg-white/90 dark:bg-hogwarts-background-dark/90 backdrop-blur-sm
+           border border-hogwarts-gold/30
+           focus:outline-none focus:ring-2 focus:ring-hogwarts-gold/50
+           transition-all duration-300
+           text-hogwarts-text-primary dark:text-hogwarts-text-light;
+  }
+
+  .floating-candle {
+    @apply absolute w-1 h-4 bg-hogwarts-gold/90 rounded-t-lg
+           before:content-[''] before:absolute before:w-[6px] before:h-[6px]
+           before:bg-hogwarts-gold/90 before:-top-[6px] before:left-[-2px]
+           before:rounded-full;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .candle-light {
+    @apply absolute -top-4 left-1/2 -translate-x-1/2
+           w-8 h-8 bg-hogwarts-gold/20 rounded-full
+           blur-sm;
+    animation: candlelight 2s ease-in-out infinite;
+  }
+
+  .sparkle {
+    @apply absolute w-1 h-1 bg-hogwarts-gold/50 rounded-full;
+    animation: sparkle 1.5s linear infinite;
+  }
+
+  .nav-link {
+    @apply text-hogwarts-text-primary dark:text-hogwarts-text-light
+           hover:text-hogwarts-gold transition-colors
+           relative after:absolute after:bottom-0 after:left-0
+           after:w-0 after:h-0.5 after:bg-hogwarts-gold
+           after:transition-all after:duration-300
+           hover:after:w-full;
+  }
+
+  .magical-reveal {
+    @apply opacity-0 translate-y-4;
+    animation: reveal 0.8s ease-out forwards;
+  }
+
+  .marauders-hover {
+    @apply relative overflow-hidden;
+  }
+
+  .marauders-hover::after {
+    content: '';
+    @apply absolute inset-0 bg-hogwarts-gold/10
+           scale-x-0 origin-left
+           transition-transform duration-500;
+  }
+
+  .marauders-hover:hover::after {
+    @apply scale-x-100;
+  }
+}
+
+.dark {
+  @apply bg-hogwarts-background-dark text-hogwarts-text-light;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1) rotate(180deg);
+  }
+}
+
+@keyframes candlelight {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
